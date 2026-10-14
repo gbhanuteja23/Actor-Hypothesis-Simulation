@@ -1,0 +1,2428 @@
+#usda 1.0
+(
+    doc = """Generated from Composed Stage of root layer 
+"""
+    endTimeCode = 1000000
+    metersPerUnit = 1
+    startTimeCode = 0
+    timeCodesPerSecond = 60
+    upAxis = "Z"
+)
+
+def "Render" (
+    hide_in_stage_window = true
+    no_delete = true
+)
+{
+    def "OmniverseKit"
+    {
+        def "HydraTextures" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            def RenderProduct "omni_kit_widget_viewport_ViewportTexture_0" (
+                apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </OmniverseKit_Persp>
+                bool omni:rtx:dlss:frameGeneration = 0
+                string[] omni:rtx:material:db:flattener:ior_constant = ["ior_constant", "glass_ior"]
+                string[] omni:rtx:material:db:flattener:reflection_roughness_constant = ["reflection_roughness_constant", "frosting_roughness"]
+                string[] omni:rtx:material:db:flattener:transmittance_color = ["transmittance_color", "glass_color"]
+                bool omni:rtx:material:db:nonVisualMaterialCSV:enabled = 0
+                bool omni:rtx:material:db:syncLoads = 1
+                token omni:rtx:post:aa:op = "dlss"
+                token omni:rtx:post:dlss:execMode = "performance"
+                int omni:rtx:pt:clampSpp = 64
+                bool omni:rtx:pt:denoising:enabled = 1
+                int omni:rtx:pt:limits:maxBounces = 4
+                int omni:rtx:pt:limits:maxGlossyBounces = 6
+                int omni:rtx:pt:maxVolumeBounces = 4
+                int omni:rtx:pt:samplesPerIteration = 64
+                int omni:rtx:pt:samplesPerPixel = 64
+                bool omni:rtx:raytracing:picking:occluded:enabled = 0
+                token omni:rtx:rendermode
+                color3f omni:rtx:rt:ambientLight:color = (0.1, 0.1, 0.1)
+                bool omni:rtx:rt:demoire = 0
+                int omni:rtx:rt:iesTextureRes = 1024
+                bool omni:rtx:rt:indexdirect:enabled = 1
+                token omni:rtx:rt:indexdirect:NanoVDBCompression = "None"
+                bool omni:rtx:rt:indexdirect:NanoVDBCompressionDither = 1
+                bool omni:rtx:rt:indexdirect:showDetailledMemoryInfo = 0
+                int omni:rtx:rt:indexdirect:svo:brickBorder = 0
+                int3 omni:rtx:rt:indexdirect:svo:brickSize = (32, 32, 32)
+                token omni:rtx:rt:indexdirect:volumeType = "IndeXSVO"
+                bool omni:rtx:scene:hydra:materialSyncLoads = 1
+                bool omni:rtx:scene:hydra:mdlMaterialWarmup = 1
+                int omni:rtx:scene:hydra:subdivision:refinementLevel = 0
+                uint omni:rtx:viewTile:limit = 4294967295
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1600, 900)
+                custom uint64 viewPickingId = 10851294744583720741
+                custom int viewportHandle = -1
+            }
+        }
+    }
+
+    def RenderSettings "OmniverseGlobalRenderSettings" (
+        apiSchemas = ["OmniRtxSettingsGlobalRtAdvancedAPI_1", "OmniRtxSettingsGlobalPtAdvancedAPI_1"]
+        no_delete = true
+    )
+    {
+        rel products = </Render/OmniverseKit/HydraTextures/omni_kit_widget_viewport_ViewportTexture_0>
+    }
+
+    def "Vars"
+    {
+        def RenderVar "LdrColor" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            uniform string sourceName = "LdrColor"
+        }
+    }
+}
+
+def Xform "World"
+{
+    def Scope "Looks"
+    {
+        def Material "ActorFieldMat"
+        {
+            token outputs:surface.connect = </World/Looks/ActorFieldMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.18, 0.02, 0.35)
+                color3f inputs:emissiveColor = (0.28, 0.05, 0.55)
+                float inputs:metallic = 0
+                float inputs:opacity = 0.45
+                float inputs:roughness = 0.1
+                token outputs:surface
+            }
+        }
+
+        def Material "ConsciousEntityMat"
+        {
+            token outputs:surface.connect = </World/Looks/ConsciousEntityMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.85, 0.9, 1)
+                color3f inputs:emissiveColor = (0.4, 0.7, 1)
+                float inputs:metallic = 0.8
+                float inputs:opacity = 1
+                float inputs:roughness = 0.1
+                token outputs:surface
+            }
+        }
+
+        def Material "ThoughtWaveMat"
+        {
+            token outputs:surface.connect = </World/Looks/ThoughtWaveMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.2, 0.6, 1)
+                color3f inputs:emissiveColor = (0.6, 0.3, 1)
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.1
+                token outputs:surface
+            }
+        }
+
+        def Material "TubulinAlphaMat"
+        {
+            token outputs:surface.connect = </World/Looks/TubulinAlphaMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.3, 0.4, 0.8)
+                color3f inputs:emissiveColor = (0.2, 0.3, 0.9)
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.2
+                token outputs:surface
+            }
+        }
+
+        def Material "TubulinBetaMat"
+        {
+            token outputs:surface.connect = </World/Looks/TubulinBetaMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.6, 0.2, 0.8)
+                color3f inputs:emissiveColor = (0.5, 0.1, 0.7)
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.2
+                token outputs:surface
+            }
+        }
+
+        def Material "ProjectionPrismMat"
+        {
+            token outputs:surface.connect = </World/Looks/ProjectionPrismMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.95, 0.98, 1)
+                color3f inputs:emissiveColor = (0.2, 0.4, 0.8)
+                float inputs:metallic = 0.2
+                float inputs:opacity = 0.65
+                float inputs:roughness = 0.05
+                token outputs:surface
+            }
+        }
+
+        def Material "StarOperatorMat"
+        {
+            token outputs:surface.connect = </World/Looks/StarOperatorMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 0.85, 0.3)
+                color3f inputs:emissiveColor = (0.9, 0.7, 0.1)
+                float inputs:metallic = 0.95
+                float inputs:opacity = 1
+                float inputs:roughness = 0.15
+                token outputs:surface
+            }
+        }
+
+        def Material "SpacetimeGridMat"
+        {
+            token outputs:surface.connect = </World/Looks/SpacetimeGridMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.15, 0.25)
+                color3f inputs:emissiveColor = (0.12, 0.35, 0.65)
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.3
+                token outputs:surface
+            }
+        }
+
+        def Material "MetalRobotMat"
+        {
+            token outputs:surface.connect = </World/Looks/MetalRobotMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.85, 0.85, 0.88)
+                float inputs:metallic = 0.9
+                float inputs:opacity = 1
+                float inputs:roughness = 0.2
+                token outputs:surface
+            }
+        }
+
+        def Material "DarkTableMat"
+        {
+            token outputs:surface.connect = </World/Looks/DarkTableMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.15, 0.16, 0.18)
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "TargetCylMat"
+        {
+            token outputs:surface.connect = </World/Looks/TargetCylMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.1, 0.8, 1)
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.3
+                token outputs:surface
+            }
+        }
+
+        def Material "TargetBlockMat"
+        {
+            token outputs:surface.connect = </World/Looks/TargetBlockMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 0.5, 0.1)
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.2
+                token outputs:surface
+            }
+        }
+
+        def Material "TargetSwitchMat"
+        {
+            token outputs:surface.connect = </World/Looks/TargetSwitchMat/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.2, 1, 0.4)
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.2
+                token outputs:surface
+            }
+        }
+    }
+
+    def "Lighting"
+    {
+        def SphereLight "KeyLight"
+        {
+            color3f inputs:color = (0.9, 0.95, 1)
+            float inputs:intensity = 8000
+            float inputs:radius = 0.2
+            double3 xformOp:translate = (2, -3, 3.5)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def SphereLight "FillLight"
+        {
+            color3f inputs:color = (0.4, 0.6, 1)
+            float inputs:intensity = 3500
+            float inputs:radius = 0.3
+            double3 xformOp:translate = (-3, -2, 2.5)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def SphereLight "CollapseFlash"
+        {
+            color3f inputs:color = (1, 0.95, 0.8)
+            float inputs:intensity = 0
+            float inputs:radius = 0.15
+            double3 xformOp:translate = (0.5, 0, 1.2000000476837158)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def Scope "ActorField"
+    {
+        def Sphere "AuraDome" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/ActorFieldMat>
+            double radius = 2.8
+            double3 xformOp:translate = (-2, 0, 1.2000000476837158)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def Scope "ConsciousEntity"
+    {
+        def Cube "DiamondCore" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/ConsciousEntityMat>
+            double size = 0.25
+            matrix4d xformOp:transform = ( (0.8535533905932737, 0.14644660940672624, -0.5000000000000001, 0), (0.14644660940672624, 0.8535533905932737, 0.5000000000000001, 0), (0.5000000000000001, -0.5000000000000001, 0.7071067811865475, 0), (-2.5, 0, 1.2, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+    }
+
+    def "ThoughtWave"
+    {
+        def Points "WaveFilament" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/ThoughtWaveMat>
+            point3f[] points = [(-2.3, 0, 1.2), (-2.2755556, 0, 1.2), (-2.251111, 0, 1.2), (-2.2266667, 0, 1.2), (-2.202222, 0, 1.2), (-2.1777778, 0, 1.2), (-2.1533334, 0, 1.2), (-2.1288888, 0, 1.2), (-2.1044445, 0, 1.2), (-2.08, 0, 1.2), (-2.0555556, 0, 1.2), (-2.031111, 0, 1.2), (-2.0066667, 0, 1.2), (-1.9822222, 0, 1.2), (-1.9577777, 0, 1.2), (-1.9333333, 0, 1.2), (-1.9088889, 0, 1.2), (-1.8844445, 0, 1.2), (-1.86, 0, 1.2), (-1.8355556, 0, 1.2), (-1.8111111, 0, 1.2), (-1.7866666, 0, 1.2), (-1.7622222, 0, 1.2), (-1.7377778, 0, 1.2), (-1.7133334, 0, 1.2), (-1.6888889, 0, 1.2), (-1.6644444, 0, 1.2), (-1.64, 0, 1.2), (-1.6155555, 0, 1.2), (-1.5911111, 0, 1.2), (-1.5666667, 0, 1.2), (-1.5422223, 0, 1.2), (-1.5177778, 0, 1.2), (-1.4933333, 0, 1.2), (-1.4688889, 0, 1.2), (-1.4444444, 0, 1.2), (-1.42, 0, 1.2), (-1.3955555, 0, 1.2), (-1.3711112, 0, 1.2), (-1.3466667, 0, 1.2), (-1.3222222, 0, 1.2), (-1.2977778, 0, 1.2), (-1.2733333, 0, 1.2), (-1.2488889, 0, 1.2), (-1.2244444, 0, 1.2)]
+            float[] widths = [0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035, 0.035]
+        }
+    }
+
+    def Scope "Microtubules"
+    {
+        def Sphere "Tubulin_0" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8799999952316284, 0, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_1" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8937453031539917, 0.05576677992939949, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_2" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9318322539329529, 0.09875806421041489, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_3" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9855356216430664, 0.11912506818771362, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_4" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0425525903701782, 0.11220195144414902, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_5" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0898213386535645, 0.07957471907138824, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_6" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1165130138397217, 0.028717879205942154, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_7" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1165130138397217, -0.028717879205942154, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_8" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0898213386535645, -0.07957471907138824, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_9" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0425525903701782, -0.11220195144414902, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_10" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9855356216430664, -0.11912506818771362, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_11" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9318322539329529, -0.09875806421041489, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_12" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8937453031539917, -0.05576677992939949, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_13" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8807456493377686, 0.013356566429138184, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_14" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9006125926971436, 0.06724691390991211, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_15" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9432480335235596, 0.10573180764913559, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_16" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9988846778869629, 0.11999481916427612, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_17" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0547767877578735, 0.10676845908164978, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_18" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0981202125549316, 0.06908273696899414, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_19" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1189855337142944, 0.0155709870159626, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_20" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1125925779342651, -0.04150788486003876, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_21" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0804060697555542, -0.08907780051231384, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_22" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0297995805740356, -0.11624106764793396, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_23" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9723662734031677, -0.11677490174770355, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_24" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.921263575553894, -0.09055701643228531, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_25" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8881983757019043, -0.04359361156821251, 0.8192307949066162)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_26" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.882973313331604, 0.02654714696109295, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_27" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9087150692939758, 0.07789134979248047, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_28" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9553691148757935, 0.1113915890455246, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_29" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0122475624084473, 0.11937335133552551, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_30" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0663203001022339, 0.10000812262296677, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_31" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1051998138427734, 0.0577322319149971, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_32" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1199792623519897, 0.002230588113889098, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_33" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.107272982597351, -0.053782057017087936, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_34" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0699917078018188, -0.0974738821387291, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_35" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0166761875152588, -0.11883561313152313, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_36" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9595404267311096, -0.11297354102134705, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_37" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.911673367023468, -0.08123058825731277, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_38" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8840409517288208, -0.030878689140081406, 0.8884615302085876)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_39" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8866552710533142, 0.03940781578421593, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_40" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9179519414901733, 0.08756780624389648, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_41" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9680448770523071, 0.11566706001758575, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_42" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0254583358764648, 0.1172683909535408, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_43" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0770394802093506, 0.09200494736433029, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_44" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1109719276428223, 0.04566427320241928, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_45" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1194820404052734, -0.011137531138956547, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_46" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1006202697753906, -0.06538785994052887, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_47" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0587074756622314, -0.10465861856937408, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_48" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0033456087112427, -0.11995334923267365, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_49" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9472173452377319, -0.107768215239048, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_50" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9031808972358704, -0.07089468091726303, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_51" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8813245296478271, -0.01778002642095089, 0.9576923251152039)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_52" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8917458653450012, 0.051778748631477356, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_53" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9282084703445435, 0.09615601599216461, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_54" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9811177253723145, 0.118505097925663, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_55" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.038352608680725, 0.11370609700679779, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_56" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0868014097213745, 0.08285839110612869, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_57" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1153650283813477, 0.03302882984280586, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_58" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1174999475479126, -0.024367239326238632, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_59" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0927170515060425, -0.0761810690164566, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_60" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0466936826705933, -0.11054272949695587, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_61" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9899734854698181, -0.11958038806915283, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_62" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9355501532554626, -0.10122361779212952, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_63" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.895891547203064, -0.05967773497104645, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_64" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.880082905292511, -0.004460405558347702, 1.0269230604171753)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_65" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8981817364692688, 0.06350620836019516, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_66" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9393572211265564, 0.10354927182197571, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_67" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9944252371788025, 0.11987043917179108, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_68" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0507704019546509, 0.1087307333946228, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_69" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0954846143722534, 0.07268212735652924, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_70" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1183245182037354, 0.019982922822237015, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_71" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1140576601028442, -0.03729412704706192, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_72" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0836615562438965, -0.08602754771709442, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_73" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0340996980667114, -0.11505308747291565, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_74" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9767259359359741, -0.11772135645151138, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_75" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9246839880943298, -0.0934210792183876, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_76" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.889896035194397, -0.04771915823221207, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_77" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8803315758705139, 0.008914646692574024, 1.0961538553237915)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_78" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9058829545974731, 0.07444445788860321, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_79" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9512595534324646, 0.10965567827224731, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_80" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0078020095825195, 0.11974610388278961, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_81" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0625571012496948, 0.1024041399359703, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_82" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1029812097549438, 0.06160261854529381, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_83" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1198134422302246, 0.006688681896775961, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_84" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.109197974205017, -0.04975755140185356, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_85" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0735664367675781, -0.09480492770671844, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_86" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.021081805229187, -0.11813364177942276, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_87" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9637675881385803, -0.11439935863018036, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_88" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.914753794670105, -0.08445756137371063, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_89" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8852688074111938, -0.03516755625605583, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_90" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8820673823356628, 0.02217891253530979, 1.1653846502304077)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_91" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.914753794670105, 0.08445756137371063, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_92" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9637675881385803, 0.11439935863018036, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_93" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.021081805229187, 0.11813364177942276, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_94" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0735664367675781, 0.09480492770671844, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_95" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.109197974205017, 0.04975755140185356, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_96" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1198134422302246, -0.006688681896775961, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_97" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1029812097549438, -0.06160261854529381, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_98" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0625571012496948, -0.1024041399359703, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_99" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0078020095825195, -0.11974610388278961, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_100" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9512595534324646, -0.10965567827224731, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_101" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9058829545974731, -0.07444445788860321, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_102" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8820673823356628, -0.02217891253530979, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_103" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8852688074111938, 0.03516755625605583, 1.2346153259277344)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_104" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9246839880943298, 0.0934210792183876, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_105" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9767259359359741, 0.11772135645151138, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_106" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0340996980667114, 0.11505308747291565, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_107" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0836615562438965, 0.08602754771709442, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_108" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1140576601028442, 0.03729412704706192, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_109" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1183245182037354, -0.019982922822237015, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_110" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0954846143722534, -0.07268212735652924, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_111" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0507704019546509, -0.1087307333946228, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_112" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9944252371788025, -0.11987043917179108, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_113" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9393572211265564, -0.10354927182197571, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_114" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8981817364692688, -0.06350620836019516, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_115" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8803315758705139, -0.008914646692574024, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_116" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.889896035194397, 0.04771915823221207, 1.3038461208343506)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_117" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9355501532554626, 0.10122361779212952, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_118" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9899734854698181, 0.11958038806915283, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_119" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0466936826705933, 0.11054272949695587, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_120" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0927170515060425, 0.0761810690164566, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_121" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1174999475479126, 0.024367239326238632, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_122" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1153650283813477, -0.03302882984280586, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_123" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0868014097213745, -0.08285839110612869, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_124" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.038352608680725, -0.11370609700679779, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_125" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9811177253723145, -0.118505097925663, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_126" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9282084703445435, -0.09615601599216461, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_127" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8917458653450012, -0.051778748631477356, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_128" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.880082905292511, 0.004460405558347702, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_129" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.895891547203064, 0.05967773497104645, 1.3730769157409668)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_130" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9472173452377319, 0.107768215239048, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_131" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0033456087112427, 0.11995334923267365, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_132" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0587074756622314, 0.10465861856937408, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_133" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1006202697753906, 0.06538785994052887, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_134" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1194820404052734, 0.011137531138956547, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_135" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1109719276428223, -0.04566427320241928, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_136" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0770394802093506, -0.09200494736433029, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_137" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0254583358764648, -0.1172683909535408, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_138" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9680448770523071, -0.11566706001758575, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_139" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9179519414901733, -0.08756780624389648, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_140" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8866552710533142, -0.03940781578421593, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_141" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8813245296478271, 0.01778002642095089, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_142" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9031808972358704, 0.07089468091726303, 1.442307710647583)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_143" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9595404267311096, 0.11297354102134705, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_144" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0166761875152588, 0.11883561313152313, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_145" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0699917078018188, 0.0974738821387291, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_146" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.107272982597351, 0.053782057017087936, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_147" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1199792623519897, -0.002230588113889098, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_148" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1051998138427734, -0.0577322319149971, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_149" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0663203001022339, -0.10000812262296677, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_150" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0122475624084473, -0.11937335133552551, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_151" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9553691148757935, -0.1113915890455246, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_152" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9087150692939758, -0.07789134979248047, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_153" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.882973313331604, -0.02654714696109295, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_154" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8840409517288208, 0.030878689140081406, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_155" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.911673367023468, 0.08123058825731277, 1.5115385055541992)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_156" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9723662734031677, 0.11677490174770355, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_157" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0297995805740356, 0.11624106764793396, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_158" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0804060697555542, 0.08907780051231384, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_159" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1125925779342651, 0.04150788486003876, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_160" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1189855337142944, -0.0155709870159626, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_161" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0981202125549316, -0.06908273696899414, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_162" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0547767877578735, -0.10676845908164978, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_163" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9988846778869629, -0.11999481916427612, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_164" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9432480335235596, -0.10573180764913559, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_165" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9006125926971436, -0.06724691390991211, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_166" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8807456493377686, -0.013356566429138184, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_167" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8881983757019043, 0.04359361156821251, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_168" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinAlphaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.921263575553894, 0.09055701643228531, 1.5807691812515259)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_169" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9855356216430664, 0.11912506818771362, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_170" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0425525903701782, 0.11220195144414902, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_171" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0898213386535645, 0.07957471907138824, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_172" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1165130138397217, 0.028717879205942154, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_173" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.1165130138397217, -0.028717879205942154, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_174" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0898213386535645, -0.07957471907138824, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_175" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-1.0425525903701782, -0.11220195144414902, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_176" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9855356216430664, -0.11912506818771362, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_177" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9318322539329529, -0.09875806421041489, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_178" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8937453031539917, -0.05576677992939949, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_179" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8799999952316284, -1.3597292847331195e-16, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_180" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.8937453031539917, 0.05576677992939949, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "Tubulin_181" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TubulinBetaMat>
+            double radius = 0.018
+            double3 xformOp:translate = (-0.9318322539329529, 0.09875806421041489, 1.649999976158142)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def "ProjectionTensor"
+    {
+        def Cone "PrismLens" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            double height = 0.45
+            rel material:binding = </World/Looks/ProjectionPrismMat>
+            double radius = 0.22
+            matrix4d xformOp:transform = ( (-2.220446049250313e-16, 0, 1.0000000000000002, 0), (0, 1, 0, 0), (-1.0000000000000002, 0, -2.220446049250313e-16, 0), (0, 0, 1.2, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Scope "StarOperator"
+        {
+            def Cube "Blade_0" (
+                apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </World/Looks/StarOperatorMat>
+                double size = 0.28
+                matrix4d xformOp:transform = ( (0.3, 0, 0, 0), (0, 1.2, 0, 0), (0, 0, 0.3, 0), (0.5, 0, 1.2, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Blade_1" (
+                apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </World/Looks/StarOperatorMat>
+                double size = 0.28
+                matrix4d xformOp:transform = ( (0.3, 0, 0, 0), (0, 1.2, 0, 0), (0, 0, 0.3, 0), (0.5, 0, 1.2, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Blade_2" (
+                apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </World/Looks/StarOperatorMat>
+                double size = 0.28
+                matrix4d xformOp:transform = ( (0.3, 0, 0, 0), (0, 1.2, 0, 0), (0, 0, 0.3, 0), (0.5, 0, 1.2, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+    }
+
+    def "SpacetimeGrid"
+    {
+        def Mesh "CurvatureSurface" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 31, 30, 1, 2, 32, 31, 2, 3, 33, 32, 3, 4, 34, 33, 4, 5, 35, 34, 5, 6, 36, 35, 6, 7, 37, 36, 7, 8, 38, 37, 8, 9, 39, 38, 9, 10, 40, 39, 10, 11, 41, 40, 11, 12, 42, 41, 12, 13, 43, 42, 13, 14, 44, 43, 14, 15, 45, 44, 15, 16, 46, 45, 16, 17, 47, 46, 17, 18, 48, 47, 18, 19, 49, 48, 19, 20, 50, 49, 20, 21, 51, 50, 21, 22, 52, 51, 22, 23, 53, 52, 23, 24, 54, 53, 24, 25, 55, 54, 25, 26, 56, 55, 26, 27, 57, 56, 27, 28, 58, 57, 28, 29, 59, 58, 30, 31, 61, 60, 31, 32, 62, 61, 32, 33, 63, 62, 33, 34, 64, 63, 34, 35, 65, 64, 35, 36, 66, 65, 36, 37, 67, 66, 37, 38, 68, 67, 38, 39, 69, 68, 39, 40, 70, 69, 40, 41, 71, 70, 41, 42, 72, 71, 42, 43, 73, 72, 43, 44, 74, 73, 44, 45, 75, 74, 45, 46, 76, 75, 46, 47, 77, 76, 47, 48, 78, 77, 48, 49, 79, 78, 49, 50, 80, 79, 50, 51, 81, 80, 51, 52, 82, 81, 52, 53, 83, 82, 53, 54, 84, 83, 54, 55, 85, 84, 55, 56, 86, 85, 56, 57, 87, 86, 57, 58, 88, 87, 58, 59, 89, 88, 60, 61, 91, 90, 61, 62, 92, 91, 62, 63, 93, 92, 63, 64, 94, 93, 64, 65, 95, 94, 65, 66, 96, 95, 66, 67, 97, 96, 67, 68, 98, 97, 68, 69, 99, 98, 69, 70, 100, 99, 70, 71, 101, 100, 71, 72, 102, 101, 72, 73, 103, 102, 73, 74, 104, 103, 74, 75, 105, 104, 75, 76, 106, 105, 76, 77, 107, 106, 77, 78, 108, 107, 78, 79, 109, 108, 79, 80, 110, 109, 80, 81, 111, 110, 81, 82, 112, 111, 82, 83, 113, 112, 83, 84, 114, 113, 84, 85, 115, 114, 85, 86, 116, 115, 86, 87, 117, 116, 87, 88, 118, 117, 88, 89, 119, 118, 90, 91, 121, 120, 91, 92, 122, 121, 92, 93, 123, 122, 93, 94, 124, 123, 94, 95, 125, 124, 95, 96, 126, 125, 96, 97, 127, 126, 97, 98, 128, 127, 98, 99, 129, 128, 99, 100, 130, 129, 100, 101, 131, 130, 101, 102, 132, 131, 102, 103, 133, 132, 103, 104, 134, 133, 104, 105, 135, 134, 105, 106, 136, 135, 106, 107, 137, 136, 107, 108, 138, 137, 108, 109, 139, 138, 109, 110, 140, 139, 110, 111, 141, 140, 111, 112, 142, 141, 112, 113, 143, 142, 113, 114, 144, 143, 114, 115, 145, 144, 115, 116, 146, 145, 116, 117, 147, 146, 117, 118, 148, 147, 118, 119, 149, 148, 120, 121, 151, 150, 121, 122, 152, 151, 122, 123, 153, 152, 123, 124, 154, 153, 124, 125, 155, 154, 125, 126, 156, 155, 126, 127, 157, 156, 127, 128, 158, 157, 128, 129, 159, 158, 129, 130, 160, 159, 130, 131, 161, 160, 131, 132, 162, 161, 132, 133, 163, 162, 133, 134, 164, 163, 134, 135, 165, 164, 135, 136, 166, 165, 136, 137, 167, 166, 137, 138, 168, 167, 138, 139, 169, 168, 139, 140, 170, 169, 140, 141, 171, 170, 141, 142, 172, 171, 142, 143, 173, 172, 143, 144, 174, 173, 144, 145, 175, 174, 145, 146, 176, 175, 146, 147, 177, 176, 147, 148, 178, 177, 148, 149, 179, 178, 150, 151, 181, 180, 151, 152, 182, 181, 152, 153, 183, 182, 153, 154, 184, 183, 154, 155, 185, 184, 155, 156, 186, 185, 156, 157, 187, 186, 157, 158, 188, 187, 158, 159, 189, 188, 159, 160, 190, 189, 160, 161, 191, 190, 161, 162, 192, 191, 162, 163, 193, 192, 163, 164, 194, 193, 164, 165, 195, 194, 165, 166, 196, 195, 166, 167, 197, 196, 167, 168, 198, 197, 168, 169, 199, 198, 169, 170, 200, 199, 170, 171, 201, 200, 171, 172, 202, 201, 172, 173, 203, 202, 173, 174, 204, 203, 174, 175, 205, 204, 175, 176, 206, 205, 176, 177, 207, 206, 177, 178, 208, 207, 178, 179, 209, 208, 180, 181, 211, 210, 181, 182, 212, 211, 182, 183, 213, 212, 183, 184, 214, 213, 184, 185, 215, 214, 185, 186, 216, 215, 186, 187, 217, 216, 187, 188, 218, 217, 188, 189, 219, 218, 189, 190, 220, 219, 190, 191, 221, 220, 191, 192, 222, 221, 192, 193, 223, 222, 193, 194, 224, 223, 194, 195, 225, 224, 195, 196, 226, 225, 196, 197, 227, 226, 197, 198, 228, 227, 198, 199, 229, 228, 199, 200, 230, 229, 200, 201, 231, 230, 201, 202, 232, 231, 202, 203, 233, 232, 203, 204, 234, 233, 204, 205, 235, 234, 205, 206, 236, 235, 206, 207, 237, 236, 207, 208, 238, 237, 208, 209, 239, 238, 210, 211, 241, 240, 211, 212, 242, 241, 212, 213, 243, 242, 213, 214, 244, 243, 214, 215, 245, 244, 215, 216, 246, 245, 216, 217, 247, 246, 217, 218, 248, 247, 218, 219, 249, 248, 219, 220, 250, 249, 220, 221, 251, 250, 221, 222, 252, 251, 222, 223, 253, 252, 223, 224, 254, 253, 224, 225, 255, 254, 225, 226, 256, 255, 226, 227, 257, 256, 227, 228, 258, 257, 228, 229, 259, 258, 229, 230, 260, 259, 230, 231, 261, 260, 231, 232, 262, 261, 232, 233, 263, 262, 233, 234, 264, 263, 234, 235, 265, 264, 235, 236, 266, 265, 236, 237, 267, 266, 237, 238, 268, 267, 238, 239, 269, 268, 240, 241, 271, 270, 241, 242, 272, 271, 242, 243, 273, 272, 243, 244, 274, 273, 244, 245, 275, 274, 245, 246, 276, 275, 246, 247, 277, 276, 247, 248, 278, 277, 248, 249, 279, 278, 249, 250, 280, 279, 250, 251, 281, 280, 251, 252, 282, 281, 252, 253, 283, 282, 253, 254, 284, 283, 254, 255, 285, 284, 255, 256, 286, 285, 256, 257, 287, 286, 257, 258, 288, 287, 258, 259, 289, 288, 259, 260, 290, 289, 260, 261, 291, 290, 261, 262, 292, 291, 262, 263, 293, 292, 263, 264, 294, 293, 264, 265, 295, 294, 265, 266, 296, 295, 266, 267, 297, 296, 267, 268, 298, 297, 268, 269, 299, 298, 270, 271, 301, 300, 271, 272, 302, 301, 272, 273, 303, 302, 273, 274, 304, 303, 274, 275, 305, 304, 275, 276, 306, 305, 276, 277, 307, 306, 277, 278, 308, 307, 278, 279, 309, 308, 279, 280, 310, 309, 280, 281, 311, 310, 281, 282, 312, 311, 282, 283, 313, 312, 283, 284, 314, 313, 284, 285, 315, 314, 285, 286, 316, 315, 286, 287, 317, 316, 287, 288, 318, 317, 288, 289, 319, 318, 289, 290, 320, 319, 290, 291, 321, 320, 291, 292, 322, 321, 292, 293, 323, 322, 293, 294, 324, 323, 294, 295, 325, 324, 295, 296, 326, 325, 296, 297, 327, 326, 297, 298, 328, 327, 298, 299, 329, 328, 300, 301, 331, 330, 301, 302, 332, 331, 302, 303, 333, 332, 303, 304, 334, 333, 304, 305, 335, 334, 305, 306, 336, 335, 306, 307, 337, 336, 307, 308, 338, 337, 308, 309, 339, 338, 309, 310, 340, 339, 310, 311, 341, 340, 311, 312, 342, 341, 312, 313, 343, 342, 313, 314, 344, 343, 314, 315, 345, 344, 315, 316, 346, 345, 316, 317, 347, 346, 317, 318, 348, 347, 318, 319, 349, 348, 319, 320, 350, 349, 320, 321, 351, 350, 321, 322, 352, 351, 322, 323, 353, 352, 323, 324, 354, 353, 324, 325, 355, 354, 325, 326, 356, 355, 326, 327, 357, 356, 327, 328, 358, 357, 328, 329, 359, 358, 330, 331, 361, 360, 331, 332, 362, 361, 332, 333, 363, 362, 333, 334, 364, 363, 334, 335, 365, 364, 335, 336, 366, 365, 336, 337, 367, 366, 337, 338, 368, 367, 338, 339, 369, 368, 339, 340, 370, 369, 340, 341, 371, 370, 341, 342, 372, 371, 342, 343, 373, 372, 343, 344, 374, 373, 344, 345, 375, 374, 345, 346, 376, 375, 346, 347, 377, 376, 347, 348, 378, 377, 348, 349, 379, 378, 349, 350, 380, 379, 350, 351, 381, 380, 351, 352, 382, 381, 352, 353, 383, 382, 353, 354, 384, 383, 354, 355, 385, 384, 355, 356, 386, 385, 356, 357, 387, 386, 357, 358, 388, 387, 358, 359, 389, 388, 360, 361, 391, 390, 361, 362, 392, 391, 362, 363, 393, 392, 363, 364, 394, 393, 364, 365, 395, 394, 365, 366, 396, 395, 366, 367, 397, 396, 367, 368, 398, 397, 368, 369, 399, 398, 369, 370, 400, 399, 370, 371, 401, 400, 371, 372, 402, 401, 372, 373, 403, 402, 373, 374, 404, 403, 374, 375, 405, 404, 375, 376, 406, 405, 376, 377, 407, 406, 377, 378, 408, 407, 378, 379, 409, 408, 379, 380, 410, 409, 380, 381, 411, 410, 381, 382, 412, 411, 382, 383, 413, 412, 383, 384, 414, 413, 384, 385, 415, 414, 385, 386, 416, 415, 386, 387, 417, 416, 387, 388, 418, 417, 388, 389, 419, 418, 390, 391, 421, 420, 391, 392, 422, 421, 392, 393, 423, 422, 393, 394, 424, 423, 394, 395, 425, 424, 395, 396, 426, 425, 396, 397, 427, 426, 397, 398, 428, 427, 398, 399, 429, 428, 399, 400, 430, 429, 400, 401, 431, 430, 401, 402, 432, 431, 402, 403, 433, 432, 403, 404, 434, 433, 404, 405, 435, 434, 405, 406, 436, 435, 406, 407, 437, 436, 407, 408, 438, 437, 408, 409, 439, 438, 409, 410, 440, 439, 410, 411, 441, 440, 411, 412, 442, 441, 412, 413, 443, 442, 413, 414, 444, 443, 414, 415, 445, 444, 415, 416, 446, 445, 416, 417, 447, 446, 417, 418, 448, 447, 418, 419, 449, 448, 420, 421, 451, 450, 421, 422, 452, 451, 422, 423, 453, 452, 423, 424, 454, 453, 424, 425, 455, 454, 425, 426, 456, 455, 426, 427, 457, 456, 427, 428, 458, 457, 428, 429, 459, 458, 429, 430, 460, 459, 430, 431, 461, 460, 431, 432, 462, 461, 432, 433, 463, 462, 433, 434, 464, 463, 434, 435, 465, 464, 435, 436, 466, 465, 436, 437, 467, 466, 437, 438, 468, 467, 438, 439, 469, 468, 439, 440, 470, 469, 440, 441, 471, 470, 441, 442, 472, 471, 442, 443, 473, 472, 443, 444, 474, 473, 444, 445, 475, 474, 445, 446, 476, 475, 446, 447, 477, 476, 447, 448, 478, 477, 448, 449, 479, 478, 450, 451, 481, 480, 451, 452, 482, 481, 452, 453, 483, 482, 453, 454, 484, 483, 454, 455, 485, 484, 455, 456, 486, 485, 456, 457, 487, 486, 457, 458, 488, 487, 458, 459, 489, 488, 459, 460, 490, 489, 460, 461, 491, 490, 461, 462, 492, 491, 462, 463, 493, 492, 463, 464, 494, 493, 464, 465, 495, 494, 465, 466, 496, 495, 466, 467, 497, 496, 467, 468, 498, 497, 468, 469, 499, 498, 469, 470, 500, 499, 470, 471, 501, 500, 471, 472, 502, 501, 472, 473, 503, 502, 473, 474, 504, 503, 474, 475, 505, 504, 475, 476, 506, 505, 476, 477, 507, 506, 477, 478, 508, 507, 478, 479, 509, 508, 480, 481, 511, 510, 481, 482, 512, 511, 482, 483, 513, 512, 483, 484, 514, 513, 484, 485, 515, 514, 485, 486, 516, 515, 486, 487, 517, 516, 487, 488, 518, 517, 488, 489, 519, 518, 489, 490, 520, 519, 490, 491, 521, 520, 491, 492, 522, 521, 492, 493, 523, 522, 493, 494, 524, 523, 494, 495, 525, 524, 495, 496, 526, 525, 496, 497, 527, 526, 497, 498, 528, 527, 498, 499, 529, 528, 499, 500, 530, 529, 500, 501, 531, 530, 501, 502, 532, 531, 502, 503, 533, 532, 503, 504, 534, 533, 504, 505, 535, 534, 505, 506, 536, 535, 506, 507, 537, 536, 507, 508, 538, 537, 508, 509, 539, 538, 510, 511, 541, 540, 511, 512, 542, 541, 512, 513, 543, 542, 513, 514, 544, 543, 514, 515, 545, 544, 515, 516, 546, 545, 516, 517, 547, 546, 517, 518, 548, 547, 518, 519, 549, 548, 519, 520, 550, 549, 520, 521, 551, 550, 521, 522, 552, 551, 522, 523, 553, 552, 523, 524, 554, 553, 524, 525, 555, 554, 525, 526, 556, 555, 526, 527, 557, 556, 527, 528, 558, 557, 528, 529, 559, 558, 529, 530, 560, 559, 530, 531, 561, 560, 531, 532, 562, 561, 532, 533, 563, 562, 533, 534, 564, 563, 534, 535, 565, 564, 535, 536, 566, 565, 536, 537, 567, 566, 537, 538, 568, 567, 538, 539, 569, 568, 540, 541, 571, 570, 541, 542, 572, 571, 542, 543, 573, 572, 543, 544, 574, 573, 544, 545, 575, 574, 545, 546, 576, 575, 546, 547, 577, 576, 547, 548, 578, 577, 548, 549, 579, 578, 549, 550, 580, 579, 550, 551, 581, 580, 551, 552, 582, 581, 552, 553, 583, 582, 553, 554, 584, 583, 554, 555, 585, 584, 555, 556, 586, 585, 556, 557, 587, 586, 557, 558, 588, 587, 558, 559, 589, 588, 559, 560, 590, 589, 560, 561, 591, 590, 561, 562, 592, 591, 562, 563, 593, 592, 563, 564, 594, 593, 564, 565, 595, 594, 565, 566, 596, 595, 566, 567, 597, 596, 567, 568, 598, 597, 568, 569, 599, 598]
+            rel material:binding = </World/Looks/SpacetimeGridMat>
+            point3f[] points = [(-2.5, -1.5, 0), (-2.3275862, -1.5, 0), (-2.1551723, -1.5, 0), (-1.9827586, -1.5, 0), (-1.8103448, -1.5, 0), (-1.637931, -1.5, 0), (-1.4655173, -1.5, 0), (-1.2931035, -1.5, 0), (-1.1206896, -1.5, 0), (-0.94827586, -1.5, 0), (-0.7758621, -1.5, 0), (-0.6034483, -1.5, 0), (-0.43103448, -1.5, 0), (-0.25862068, -1.5, 0), (-0.0862069, -1.5, 0), (0.0862069, -1.5, 0), (0.25862068, -1.5, 0), (0.43103448, -1.5, 0), (0.6034483, -1.5, 0), (0.7758621, -1.5, 0), (0.94827586, -1.5, 0), (1.1206896, -1.5, 0), (1.2931035, -1.5, 0), (1.4655173, -1.5, 0), (1.637931, -1.5, 0), (1.8103448, -1.5, 0), (1.9827586, -1.5, 0), (2.1551723, -1.5, 0), (2.3275862, -1.5, 0), (2.5, -1.5, 0), (-2.5, -1.3421053, 0), (-2.3275862, -1.3421053, 0), (-2.1551723, -1.3421053, 0), (-1.9827586, -1.3421053, 0), (-1.8103448, -1.3421053, 0), (-1.637931, -1.3421053, 0), (-1.4655173, -1.3421053, 0), (-1.2931035, -1.3421053, 0), (-1.1206896, -1.3421053, 0), (-0.94827586, -1.3421053, 0), (-0.7758621, -1.3421053, 0), (-0.6034483, -1.3421053, 0), (-0.43103448, -1.3421053, 0), (-0.25862068, -1.3421053, 0), (-0.0862069, -1.3421053, 0), (0.0862069, -1.3421053, 0), (0.25862068, -1.3421053, 0), (0.43103448, -1.3421053, 0), (0.6034483, -1.3421053, 0), (0.7758621, -1.3421053, 0), (0.94827586, -1.3421053, 0), (1.1206896, -1.3421053, 0), (1.2931035, -1.3421053, 0), (1.4655173, -1.3421053, 0), (1.637931, -1.3421053, 0), (1.8103448, -1.3421053, 0), (1.9827586, -1.3421053, 0), (2.1551723, -1.3421053, 0), (2.3275862, -1.3421053, 0), (2.5, -1.3421053, 0), (-2.5, -1.1842105, 0), (-2.3275862, -1.1842105, 0), (-2.1551723, -1.1842105, 0), (-1.9827586, -1.1842105, 0), (-1.8103448, -1.1842105, 0), (-1.637931, -1.1842105, 0), (-1.4655173, -1.1842105, 0), (-1.2931035, -1.1842105, 0), (-1.1206896, -1.1842105, 0), (-0.94827586, -1.1842105, 0), (-0.7758621, -1.1842105, 0), (-0.6034483, -1.1842105, 0), (-0.43103448, -1.1842105, 0), (-0.25862068, -1.1842105, 0), (-0.0862069, -1.1842105, 0), (0.0862069, -1.1842105, 0), (0.25862068, -1.1842105, 0), (0.43103448, -1.1842105, 0), (0.6034483, -1.1842105, 0), (0.7758621, -1.1842105, 0), (0.94827586, -1.1842105, 0), (1.1206896, -1.1842105, 0), (1.2931035, -1.1842105, 0), (1.4655173, -1.1842105, 0), (1.637931, -1.1842105, 0), (1.8103448, -1.1842105, 0), (1.9827586, -1.1842105, 0), (2.1551723, -1.1842105, 0), (2.3275862, -1.1842105, 0), (2.5, -1.1842105, 0), (-2.5, -1.0263158, 0), (-2.3275862, -1.0263158, 0), (-2.1551723, -1.0263158, 0), (-1.9827586, -1.0263158, 0), (-1.8103448, -1.0263158, 0), (-1.637931, -1.0263158, 0), (-1.4655173, -1.0263158, 0), (-1.2931035, -1.0263158, 0), (-1.1206896, -1.0263158, 0), (-0.94827586, -1.0263158, 0), (-0.7758621, -1.0263158, 0), (-0.6034483, -1.0263158, 0), (-0.43103448, -1.0263158, 0), (-0.25862068, -1.0263158, 0), (-0.0862069, -1.0263158, 0), (0.0862069, -1.0263158, 0), (0.25862068, -1.0263158, 0), (0.43103448, -1.0263158, 0), (0.6034483, -1.0263158, 0), (0.7758621, -1.0263158, 0), (0.94827586, -1.0263158, 0), (1.1206896, -1.0263158, 0), (1.2931035, -1.0263158, 0), (1.4655173, -1.0263158, 0), (1.637931, -1.0263158, 0), (1.8103448, -1.0263158, 0), (1.9827586, -1.0263158, 0), (2.1551723, -1.0263158, 0), (2.3275862, -1.0263158, 0), (2.5, -1.0263158, 0), (-2.5, -0.8684211, 0), (-2.3275862, -0.8684211, 0), (-2.1551723, -0.8684211, 0), (-1.9827586, -0.8684211, 0), (-1.8103448, -0.8684211, 0), (-1.637931, -0.8684211, 0), (-1.4655173, -0.8684211, 0), (-1.2931035, -0.8684211, 0), (-1.1206896, -0.8684211, 0), (-0.94827586, -0.8684211, 0), (-0.7758621, -0.8684211, 0), (-0.6034483, -0.8684211, 0), (-0.43103448, -0.8684211, 0), (-0.25862068, -0.8684211, 0), (-0.0862069, -0.8684211, 0), (0.0862069, -0.8684211, 0), (0.25862068, -0.8684211, 0), (0.43103448, -0.8684211, 0), (0.6034483, -0.8684211, 0), (0.7758621, -0.8684211, 0), (0.94827586, -0.8684211, 0), (1.1206896, -0.8684211, 0), (1.2931035, -0.8684211, 0), (1.4655173, -0.8684211, 0), (1.637931, -0.8684211, 0), (1.8103448, -0.8684211, 0), (1.9827586, -0.8684211, 0), (2.1551723, -0.8684211, 0), (2.3275862, -0.8684211, 0), (2.5, -0.8684211, 0), (-2.5, -0.7105263, 0), (-2.3275862, -0.7105263, 0), (-2.1551723, -0.7105263, 0), (-1.9827586, -0.7105263, 0), (-1.8103448, -0.7105263, 0), (-1.637931, -0.7105263, 0), (-1.4655173, -0.7105263, 0), (-1.2931035, -0.7105263, 0), (-1.1206896, -0.7105263, 0), (-0.94827586, -0.7105263, 0), (-0.7758621, -0.7105263, 0), (-0.6034483, -0.7105263, 0), (-0.43103448, -0.7105263, 0), (-0.25862068, -0.7105263, 0), (-0.0862069, -0.7105263, 0), (0.0862069, -0.7105263, 0), (0.25862068, -0.7105263, 0), (0.43103448, -0.7105263, 0), (0.6034483, -0.7105263, 0), (0.7758621, -0.7105263, 0), (0.94827586, -0.7105263, 0), (1.1206896, -0.7105263, 0), (1.2931035, -0.7105263, 0), (1.4655173, -0.7105263, 0), (1.637931, -0.7105263, 0), (1.8103448, -0.7105263, 0), (1.9827586, -0.7105263, 0), (2.1551723, -0.7105263, 0), (2.3275862, -0.7105263, 0), (2.5, -0.7105263, 0), (-2.5, -0.55263156, 0), (-2.3275862, -0.55263156, 0), (-2.1551723, -0.55263156, 0), (-1.9827586, -0.55263156, 0), (-1.8103448, -0.55263156, 0), (-1.637931, -0.55263156, 0), (-1.4655173, -0.55263156, 0), (-1.2931035, -0.55263156, 0), (-1.1206896, -0.55263156, 0), (-0.94827586, -0.55263156, 0), (-0.7758621, -0.55263156, 0), (-0.6034483, -0.55263156, 0), (-0.43103448, -0.55263156, 0), (-0.25862068, -0.55263156, 0), (-0.0862069, -0.55263156, 0), (0.0862069, -0.55263156, 0), (0.25862068, -0.55263156, 0), (0.43103448, -0.55263156, 0), (0.6034483, -0.55263156, 0), (0.7758621, -0.55263156, 0), (0.94827586, -0.55263156, 0), (1.1206896, -0.55263156, 0), (1.2931035, -0.55263156, 0), (1.4655173, -0.55263156, 0), (1.637931, -0.55263156, 0), (1.8103448, -0.55263156, 0), (1.9827586, -0.55263156, 0), (2.1551723, -0.55263156, 0), (2.3275862, -0.55263156, 0), (2.5, -0.55263156, 0), (-2.5, -0.39473686, 0), (-2.3275862, -0.39473686, 0), (-2.1551723, -0.39473686, 0), (-1.9827586, -0.39473686, 0), (-1.8103448, -0.39473686, 0), (-1.637931, -0.39473686, 0), (-1.4655173, -0.39473686, 0), (-1.2931035, -0.39473686, 0), (-1.1206896, -0.39473686, 0), (-0.94827586, -0.39473686, 0), (-0.7758621, -0.39473686, 0), (-0.6034483, -0.39473686, 0), (-0.43103448, -0.39473686, 0), (-0.25862068, -0.39473686, 0), (-0.0862069, -0.39473686, 0), (0.0862069, -0.39473686, 0), (0.25862068, -0.39473686, 0), (0.43103448, -0.39473686, 0), (0.6034483, -0.39473686, 0), (0.7758621, -0.39473686, 0), (0.94827586, -0.39473686, 0), (1.1206896, -0.39473686, 0), (1.2931035, -0.39473686, 0), (1.4655173, -0.39473686, 0), (1.637931, -0.39473686, 0), (1.8103448, -0.39473686, 0), (1.9827586, -0.39473686, 0), (2.1551723, -0.39473686, 0), (2.3275862, -0.39473686, 0), (2.5, -0.39473686, 0), (-2.5, -0.23684211, 0), (-2.3275862, -0.23684211, 0), (-2.1551723, -0.23684211, 0), (-1.9827586, -0.23684211, 0), (-1.8103448, -0.23684211, 0), (-1.637931, -0.23684211, 0), (-1.4655173, -0.23684211, 0), (-1.2931035, -0.23684211, 0), (-1.1206896, -0.23684211, 0), (-0.94827586, -0.23684211, 0), (-0.7758621, -0.23684211, 0), (-0.6034483, -0.23684211, 0), (-0.43103448, -0.23684211, 0), (-0.25862068, -0.23684211, 0), (-0.0862069, -0.23684211, 0), (0.0862069, -0.23684211, 0), (0.25862068, -0.23684211, 0), (0.43103448, -0.23684211, 0), (0.6034483, -0.23684211, 0), (0.7758621, -0.23684211, 0), (0.94827586, -0.23684211, 0), (1.1206896, -0.23684211, 0), (1.2931035, -0.23684211, 0), (1.4655173, -0.23684211, 0), (1.637931, -0.23684211, 0), (1.8103448, -0.23684211, 0), (1.9827586, -0.23684211, 0), (2.1551723, -0.23684211, 0), (2.3275862, -0.23684211, 0), (2.5, -0.23684211, 0), (-2.5, -0.078947365, 0), (-2.3275862, -0.078947365, 0), (-2.1551723, -0.078947365, 0), (-1.9827586, -0.078947365, 0), (-1.8103448, -0.078947365, 0), (-1.637931, -0.078947365, 0), (-1.4655173, -0.078947365, 0), (-1.2931035, -0.078947365, 0), (-1.1206896, -0.078947365, 0), (-0.94827586, -0.078947365, 0), (-0.7758621, -0.078947365, 0), (-0.6034483, -0.078947365, 0), (-0.43103448, -0.078947365, 0), (-0.25862068, -0.078947365, 0), (-0.0862069, -0.078947365, 0), (0.0862069, -0.078947365, 0), (0.25862068, -0.078947365, 0), (0.43103448, -0.078947365, 0), (0.6034483, -0.078947365, 0), (0.7758621, -0.078947365, 0), (0.94827586, -0.078947365, 0), (1.1206896, -0.078947365, 0), (1.2931035, -0.078947365, 0), (1.4655173, -0.078947365, 0), (1.637931, -0.078947365, 0), (1.8103448, -0.078947365, 0), (1.9827586, -0.078947365, 0), (2.1551723, -0.078947365, 0), (2.3275862, -0.078947365, 0), (2.5, -0.078947365, 0), (-2.5, 0.078947365, 0), (-2.3275862, 0.078947365, 0), (-2.1551723, 0.078947365, 0), (-1.9827586, 0.078947365, 0), (-1.8103448, 0.078947365, 0), (-1.637931, 0.078947365, 0), (-1.4655173, 0.078947365, 0), (-1.2931035, 0.078947365, 0), (-1.1206896, 0.078947365, 0), (-0.94827586, 0.078947365, 0), (-0.7758621, 0.078947365, 0), (-0.6034483, 0.078947365, 0), (-0.43103448, 0.078947365, 0), (-0.25862068, 0.078947365, 0), (-0.0862069, 0.078947365, 0), (0.0862069, 0.078947365, 0), (0.25862068, 0.078947365, 0), (0.43103448, 0.078947365, 0), (0.6034483, 0.078947365, 0), (0.7758621, 0.078947365, 0), (0.94827586, 0.078947365, 0), (1.1206896, 0.078947365, 0), (1.2931035, 0.078947365, 0), (1.4655173, 0.078947365, 0), (1.637931, 0.078947365, 0), (1.8103448, 0.078947365, 0), (1.9827586, 0.078947365, 0), (2.1551723, 0.078947365, 0), (2.3275862, 0.078947365, 0), (2.5, 0.078947365, 0), (-2.5, 0.23684211, 0), (-2.3275862, 0.23684211, 0), (-2.1551723, 0.23684211, 0), (-1.9827586, 0.23684211, 0), (-1.8103448, 0.23684211, 0), (-1.637931, 0.23684211, 0), (-1.4655173, 0.23684211, 0), (-1.2931035, 0.23684211, 0), (-1.1206896, 0.23684211, 0), (-0.94827586, 0.23684211, 0), (-0.7758621, 0.23684211, 0), (-0.6034483, 0.23684211, 0), (-0.43103448, 0.23684211, 0), (-0.25862068, 0.23684211, 0), (-0.0862069, 0.23684211, 0), (0.0862069, 0.23684211, 0), (0.25862068, 0.23684211, 0), (0.43103448, 0.23684211, 0), (0.6034483, 0.23684211, 0), (0.7758621, 0.23684211, 0), (0.94827586, 0.23684211, 0), (1.1206896, 0.23684211, 0), (1.2931035, 0.23684211, 0), (1.4655173, 0.23684211, 0), (1.637931, 0.23684211, 0), (1.8103448, 0.23684211, 0), (1.9827586, 0.23684211, 0), (2.1551723, 0.23684211, 0), (2.3275862, 0.23684211, 0), (2.5, 0.23684211, 0), (-2.5, 0.39473686, 0), (-2.3275862, 0.39473686, 0), (-2.1551723, 0.39473686, 0), (-1.9827586, 0.39473686, 0), (-1.8103448, 0.39473686, 0), (-1.637931, 0.39473686, 0), (-1.4655173, 0.39473686, 0), (-1.2931035, 0.39473686, 0), (-1.1206896, 0.39473686, 0), (-0.94827586, 0.39473686, 0), (-0.7758621, 0.39473686, 0), (-0.6034483, 0.39473686, 0), (-0.43103448, 0.39473686, 0), (-0.25862068, 0.39473686, 0), (-0.0862069, 0.39473686, 0), (0.0862069, 0.39473686, 0), (0.25862068, 0.39473686, 0), (0.43103448, 0.39473686, 0), (0.6034483, 0.39473686, 0), (0.7758621, 0.39473686, 0), (0.94827586, 0.39473686, 0), (1.1206896, 0.39473686, 0), (1.2931035, 0.39473686, 0), (1.4655173, 0.39473686, 0), (1.637931, 0.39473686, 0), (1.8103448, 0.39473686, 0), (1.9827586, 0.39473686, 0), (2.1551723, 0.39473686, 0), (2.3275862, 0.39473686, 0), (2.5, 0.39473686, 0), (-2.5, 0.55263156, 0), (-2.3275862, 0.55263156, 0), (-2.1551723, 0.55263156, 0), (-1.9827586, 0.55263156, 0), (-1.8103448, 0.55263156, 0), (-1.637931, 0.55263156, 0), (-1.4655173, 0.55263156, 0), (-1.2931035, 0.55263156, 0), (-1.1206896, 0.55263156, 0), (-0.94827586, 0.55263156, 0), (-0.7758621, 0.55263156, 0), (-0.6034483, 0.55263156, 0), (-0.43103448, 0.55263156, 0), (-0.25862068, 0.55263156, 0), (-0.0862069, 0.55263156, 0), (0.0862069, 0.55263156, 0), (0.25862068, 0.55263156, 0), (0.43103448, 0.55263156, 0), (0.6034483, 0.55263156, 0), (0.7758621, 0.55263156, 0), (0.94827586, 0.55263156, 0), (1.1206896, 0.55263156, 0), (1.2931035, 0.55263156, 0), (1.4655173, 0.55263156, 0), (1.637931, 0.55263156, 0), (1.8103448, 0.55263156, 0), (1.9827586, 0.55263156, 0), (2.1551723, 0.55263156, 0), (2.3275862, 0.55263156, 0), (2.5, 0.55263156, 0), (-2.5, 0.7105263, 0), (-2.3275862, 0.7105263, 0), (-2.1551723, 0.7105263, 0), (-1.9827586, 0.7105263, 0), (-1.8103448, 0.7105263, 0), (-1.637931, 0.7105263, 0), (-1.4655173, 0.7105263, 0), (-1.2931035, 0.7105263, 0), (-1.1206896, 0.7105263, 0), (-0.94827586, 0.7105263, 0), (-0.7758621, 0.7105263, 0), (-0.6034483, 0.7105263, 0), (-0.43103448, 0.7105263, 0), (-0.25862068, 0.7105263, 0), (-0.0862069, 0.7105263, 0), (0.0862069, 0.7105263, 0), (0.25862068, 0.7105263, 0), (0.43103448, 0.7105263, 0), (0.6034483, 0.7105263, 0), (0.7758621, 0.7105263, 0), (0.94827586, 0.7105263, 0), (1.1206896, 0.7105263, 0), (1.2931035, 0.7105263, 0), (1.4655173, 0.7105263, 0), (1.637931, 0.7105263, 0), (1.8103448, 0.7105263, 0), (1.9827586, 0.7105263, 0), (2.1551723, 0.7105263, 0), (2.3275862, 0.7105263, 0), (2.5, 0.7105263, 0), (-2.5, 0.8684211, 0), (-2.3275862, 0.8684211, 0), (-2.1551723, 0.8684211, 0), (-1.9827586, 0.8684211, 0), (-1.8103448, 0.8684211, 0), (-1.637931, 0.8684211, 0), (-1.4655173, 0.8684211, 0), (-1.2931035, 0.8684211, 0), (-1.1206896, 0.8684211, 0), (-0.94827586, 0.8684211, 0), (-0.7758621, 0.8684211, 0), (-0.6034483, 0.8684211, 0), (-0.43103448, 0.8684211, 0), (-0.25862068, 0.8684211, 0), (-0.0862069, 0.8684211, 0), (0.0862069, 0.8684211, 0), (0.25862068, 0.8684211, 0), (0.43103448, 0.8684211, 0), (0.6034483, 0.8684211, 0), (0.7758621, 0.8684211, 0), (0.94827586, 0.8684211, 0), (1.1206896, 0.8684211, 0), (1.2931035, 0.8684211, 0), (1.4655173, 0.8684211, 0), (1.637931, 0.8684211, 0), (1.8103448, 0.8684211, 0), (1.9827586, 0.8684211, 0), (2.1551723, 0.8684211, 0), (2.3275862, 0.8684211, 0), (2.5, 0.8684211, 0), (-2.5, 1.0263158, 0), (-2.3275862, 1.0263158, 0), (-2.1551723, 1.0263158, 0), (-1.9827586, 1.0263158, 0), (-1.8103448, 1.0263158, 0), (-1.637931, 1.0263158, 0), (-1.4655173, 1.0263158, 0), (-1.2931035, 1.0263158, 0), (-1.1206896, 1.0263158, 0), (-0.94827586, 1.0263158, 0), (-0.7758621, 1.0263158, 0), (-0.6034483, 1.0263158, 0), (-0.43103448, 1.0263158, 0), (-0.25862068, 1.0263158, 0), (-0.0862069, 1.0263158, 0), (0.0862069, 1.0263158, 0), (0.25862068, 1.0263158, 0), (0.43103448, 1.0263158, 0), (0.6034483, 1.0263158, 0), (0.7758621, 1.0263158, 0), (0.94827586, 1.0263158, 0), (1.1206896, 1.0263158, 0), (1.2931035, 1.0263158, 0), (1.4655173, 1.0263158, 0), (1.637931, 1.0263158, 0), (1.8103448, 1.0263158, 0), (1.9827586, 1.0263158, 0), (2.1551723, 1.0263158, 0), (2.3275862, 1.0263158, 0), (2.5, 1.0263158, 0), (-2.5, 1.1842105, 0), (-2.3275862, 1.1842105, 0), (-2.1551723, 1.1842105, 0), (-1.9827586, 1.1842105, 0), (-1.8103448, 1.1842105, 0), (-1.637931, 1.1842105, 0), (-1.4655173, 1.1842105, 0), (-1.2931035, 1.1842105, 0), (-1.1206896, 1.1842105, 0), (-0.94827586, 1.1842105, 0), (-0.7758621, 1.1842105, 0), (-0.6034483, 1.1842105, 0), (-0.43103448, 1.1842105, 0), (-0.25862068, 1.1842105, 0), (-0.0862069, 1.1842105, 0), (0.0862069, 1.1842105, 0), (0.25862068, 1.1842105, 0), (0.43103448, 1.1842105, 0), (0.6034483, 1.1842105, 0), (0.7758621, 1.1842105, 0), (0.94827586, 1.1842105, 0), (1.1206896, 1.1842105, 0), (1.2931035, 1.1842105, 0), (1.4655173, 1.1842105, 0), (1.637931, 1.1842105, 0), (1.8103448, 1.1842105, 0), (1.9827586, 1.1842105, 0), (2.1551723, 1.1842105, 0), (2.3275862, 1.1842105, 0), (2.5, 1.1842105, 0), (-2.5, 1.3421053, 0), (-2.3275862, 1.3421053, 0), (-2.1551723, 1.3421053, 0), (-1.9827586, 1.3421053, 0), (-1.8103448, 1.3421053, 0), (-1.637931, 1.3421053, 0), (-1.4655173, 1.3421053, 0), (-1.2931035, 1.3421053, 0), (-1.1206896, 1.3421053, 0), (-0.94827586, 1.3421053, 0), (-0.7758621, 1.3421053, 0), (-0.6034483, 1.3421053, 0), (-0.43103448, 1.3421053, 0), (-0.25862068, 1.3421053, 0), (-0.0862069, 1.3421053, 0), (0.0862069, 1.3421053, 0), (0.25862068, 1.3421053, 0), (0.43103448, 1.3421053, 0), (0.6034483, 1.3421053, 0), (0.7758621, 1.3421053, 0), (0.94827586, 1.3421053, 0), (1.1206896, 1.3421053, 0), (1.2931035, 1.3421053, 0), (1.4655173, 1.3421053, 0), (1.637931, 1.3421053, 0), (1.8103448, 1.3421053, 0), (1.9827586, 1.3421053, 0), (2.1551723, 1.3421053, 0), (2.3275862, 1.3421053, 0), (2.5, 1.3421053, 0), (-2.5, 1.5, 0), (-2.3275862, 1.5, 0), (-2.1551723, 1.5, 0), (-1.9827586, 1.5, 0), (-1.8103448, 1.5, 0), (-1.637931, 1.5, 0), (-1.4655173, 1.5, 0), (-1.2931035, 1.5, 0), (-1.1206896, 1.5, 0), (-0.94827586, 1.5, 0), (-0.7758621, 1.5, 0), (-0.6034483, 1.5, 0), (-0.43103448, 1.5, 0), (-0.25862068, 1.5, 0), (-0.0862069, 1.5, 0), (0.0862069, 1.5, 0), (0.25862068, 1.5, 0), (0.43103448, 1.5, 0), (0.6034483, 1.5, 0), (0.7758621, 1.5, 0), (0.94827586, 1.5, 0), (1.1206896, 1.5, 0), (1.2931035, 1.5, 0), (1.4655173, 1.5, 0), (1.637931, 1.5, 0), (1.8103448, 1.5, 0), (1.9827586, 1.5, 0), (2.1551723, 1.5, 0), (2.3275862, 1.5, 0), (2.5, 1.5, 0)]
+        }
+    }
+
+    def Scope "PhysicalEnvironment"
+    {
+        def Cube "GroundPlane" (
+            apiSchemas = ["PhysicsCollisionAPI"]
+        )
+        {
+            double size = 1
+            matrix4d xformOp:transform = ( (20, 0, 0, 0), (0, 20, 0, 0), (0, 0, 0.02, 0), (0, 0, -0.01, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Cube "WorkTable" (
+            apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/DarkTableMat>
+            double size = 1
+            matrix4d xformOp:transform = ( (0.8, 0, 0, 0), (0, 1.2, 0, 0), (0, 0, 0.35, 0), (0.5, 0, 0.175, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Xform "RoboticManipulator"
+        {
+            def Cylinder "Base" (
+                apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Z"
+                double height = 0.12
+                rel material:binding = </World/Looks/MetalRobotMat>
+                double radius = 0.08
+                double3 xformOp:translate = (0.10000000149011612, 0, 0.4099999964237213)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cube "Forearm" (
+                apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </World/Looks/MetalRobotMat>
+                double size = 0.06
+                matrix4d xformOp:transform = ( (3.5, 0, 0, 0), (0, 0.6, 0, 0), (0, 0, 0.6, 0), (0.28, 0, 0.45, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Cylinder "TargetCylinder_Alpha" (
+            apiSchemas = ["PhysicsCollisionAPI", "PhysicsRigidBodyAPI", "MaterialBindingAPI"]
+        )
+        {
+            uniform token axis = "Z"
+            double height = 0.12
+            rel material:binding = </World/Looks/TargetCylMat>
+            double radius = 0.03
+            double3 xformOp:translate = (0.44999998807907104, 0.20000000298023224, 0.4099999964237213)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cube "TargetBlock_Beta" (
+            apiSchemas = ["PhysicsCollisionAPI", "PhysicsRigidBodyAPI", "MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TargetBlockMat>
+            double size = 0.07
+            double3 xformOp:translate = (0.44999998807907104, -0.20000000298023224, 0.38499999046325684)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cube "TargetSwitch_Gamma" (
+            apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/Looks/TargetSwitchMat>
+            double size = 0.05
+            double3 xformOp:translate = (0.550000011920929, 0, 0.375)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+}
+
+def Camera "OmniverseKit_Persp" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (0.01, 10000000)
+    float focalLength = 18.147562
+    float focusDistance = 400
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -8.660254037844386)
+    float3 xformOp:rotateXYZ = (54.73561, -6.3611094e-15, 135)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (5, 5, 5)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+def Camera "OmniverseKit_Front" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 50
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -5)
+    token projection = "orthographic"
+    float verticalAperture = 50
+    float3 xformOp:rotateXYZ = (90, -1.2722219e-14, 90)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (5, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+def Camera "OmniverseKit_Top" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 50
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -5)
+    token projection = "orthographic"
+    float verticalAperture = 50
+    float3 xformOp:rotateXYZ = (1.2722219e-14, -7.016709e-15, -90)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 5)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+def Camera "OmniverseKit_Right" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 50
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -5)
+    token projection = "orthographic"
+    float verticalAperture = 50
+    float3 xformOp:rotateXYZ = (90, 7.06225e-31, -1.2722219e-14)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, -5, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+

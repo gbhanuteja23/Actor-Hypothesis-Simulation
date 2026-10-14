@@ -1,0 +1,153 @@
+{
+  "project_name": "Actor Hypothesis Simulation",
+  "version": "1.0.0",
+  "isaac_sim_version": "5.0.1+",
+  "physics": {
+    "physics_dt": 0.01666667,
+    "rendering_dt": 0.01666667,
+    "gravity": [0.0, 0.0, -9.81],
+    "solver_iterations": 8,
+    "enable_gpu_dynamics": true
+  },
+  "actor_field": {
+    "vacuum_energy_density": 1.25e-9,
+    "fluctuation_frequency": 2.4,
+    "field_color": [0.29, 0.0, 0.51],
+    "field_radius": 3.0,
+    "aura_intensity": 1.8
+  },
+  "conscious_entity": {
+    "entity_origin": [-2.5, 0.0, 1.2],
+    "spatial_dispersion": 0.35,
+    "default_focus_density": 0.85,
+    "focus_ramp_rate": 0.5,
+    "intent_vector": [1.0, 0.0, 0.0]
+  },
+  "thought_wave": {
+    "num_eigenstates": 4,
+    "eigenstates": [
+      {
+        "id": 0,
+        "name": "Action Alpha: Reach & Grasp Cylinder",
+        "description": "Direct muscular actuation: precision reach and grasp of target physical cylinder",
+        "base_amplitude": 0.5,
+        "phase_velocity": 3.14159,
+        "target_cartesian": [0.45, 0.20, 0.35],
+        "target_color": [0.1, 0.8, 1.0]
+      },
+      {
+        "id": 1,
+        "name": "Action Beta: Push Heavy Block",
+        "description": "High kinetic transfer: decisive pushing of mass block across friction surface",
+        "base_amplitude": 0.4,
+        "phase_velocity": 4.71238,
+        "target_cartesian": [0.45, -0.20, 0.35],
+        "target_color": [1.0, 0.5, 0.1]
+      },
+      {
+        "id": 2,
+        "name": "Action Gamma: Actuate Precision Switch",
+        "description": "Fine motor coordination: depress state toggle switch reducing system entropy",
+        "base_amplitude": 0.3,
+        "phase_velocity": 6.28318,
+        "target_cartesian": [0.55, 0.0, 0.42],
+        "target_color": [0.2, 1.0, 0.4]
+      },
+      {
+        "id": 3,
+        "name": "Action Delta: Daydreaming / Idle Superposition",
+        "description": "Sub-threshold wandering thought wave without definitive physical intention",
+        "base_amplitude": 0.2,
+        "phase_velocity": 1.57079,
+        "target_cartesian": [0.30, 0.0, 0.55],
+        "target_color": [0.6, 0.4, 0.8]
+      }
+    ]
+  },
+  "microtubules": {
+    "protofilaments": 13,
+    "subunits_per_filament": 20,
+    "cylinder_radius": 0.12,
+    "cylinder_length": 1.2,
+    "position": [-1.0, 0.0, 1.2],
+    "dipole_oscillation_freq": 12.5,
+    "frohlich_coherence_base": 0.025,
+    "coherence_gain_alpha": 2.5,
+    "tubulin_mass_kg": 1.8e-22,
+    "anesthesia_enabled": false,
+    "anesthesia_damping": 0.02
+  },
+  "objective_reduction": {
+    "hbar_simulation": 1.0,
+    "gravitational_constant_g": 6.674e-11,
+    "eg_scaling_constant": 1.85,
+    "threshold_critical_integral": 1.0,
+    "time_to_collapse_scaling": 2.2,
+    "optical_shutter_planck_duration_s": 0.08,
+    "collapse_flash_intensity": 10.0
+  },
+  "projection_tensor": {
+    "prism_position": [0.0, 0.0, 1.2],
+    "prism_scale": [0.4, 0.4, 0.5],
+    "star_operator_position": [0.6, 0.0, 1.2],
+    "cartesian_projection_gain": 1.0,
+    "torque_projection_gain": 120.0
+  },
+  "spacetime_geometry": {
+    "grid_origin": [-2.5, -1.5, 0.0],
+    "grid_dimensions": [5.0, 3.0],
+    "grid_subdivisions_x": 30,
+    "grid_subdivisions_y": 20,
+    "curvature_coupling": 0.15,
+    "residue_accumulation_rate": 0.08,
+    "residue_dissipation_rate": 0.005
+  },
+  "physical_world": {
+    "robot_base_position": [0.0, 0.0, 0.0],
+    "table_position": [0.5, 0.0, 0.0],
+    "target_objects": [
+      {
+        "id": 0,
+        "name": "TargetCylinder_Alpha",
+        "type": "cylinder",
+        "radius": 0.03,
+        "height": 0.12,
+        "position": [0.45, 0.20, 0.06],
+        "mass": 0.25,
+        "color": [0.1, 0.8, 1.0]
+      },
+      {
+        "id": 1,
+        "name": "TargetBlock_Beta",
+        "type": "cube",
+        "size": 0.07,
+        "position": [0.45, -0.20, 0.035],
+        "mass": 0.85,
+        "color": [1.0, 0.5, 0.1]
+      },
+      {
+        "id": 2,
+        "name": "TargetSwitch_Gamma",
+        "type": "switch",
+        "size": 0.05,
+        "position": [0.55, 0.0, 0.04],
+        "mass": 0.15,
+        "color": [0.2, 1.0, 0.4]
+      }
+    ]
+  },
+  "camera": {
+    "perspective_view": {
+      "position": [1.8, -2.8, 2.2],
+      "target": [0.0, 0.0, 0.8]
+    },
+    "transduction_chain_view": {
+      "position": [-0.5, -3.2, 1.5],
+      "target": [-0.5, 0.0, 1.2]
+    },
+    "robot_action_view": {
+      "position": [0.9, -1.2, 0.9],
+      "target": [0.45, 0.0, 0.3]
+    }
+  }
+}
